@@ -17,7 +17,7 @@ out/
 !**/src/test/**/out/
 allure-results
 .gigaide
-.gra
+.idea
 
 ### Eclipse ###
 .apt_generated
