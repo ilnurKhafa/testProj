@@ -15,6 +15,9 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+allure-results
+.gigaide
+.gra
 
 ### Eclipse ###
 .apt_generated
