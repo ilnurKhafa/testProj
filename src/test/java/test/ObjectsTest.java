@@ -30,7 +30,7 @@ public class ObjectsTest extends TestBase {
         driver.get("http://localhost:8080/bh/");
         assertTrue(loginBhPage.getTitle().getText().equals("БАРС-Балансодержатель"));
         loginBhPage.isPageLoaded();
-
+//testing
         loginBhPage.getPassword().click();
         loginBhPage.getPassword().sendKeys("111");
         loginBhPage.getLoginInput().click();
