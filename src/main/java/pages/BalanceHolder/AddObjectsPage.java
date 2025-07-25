@@ -33,6 +33,10 @@ public class AddObjectsPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"mat-dialog-13\"]/app-add-edit-reestr-element/mat-dialog-actions/button[2]")
     private WebElement closeButton;
 
+    @ElementDescription("Скролл")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-1\"]/app-add-edit-reestr-element/mat-dialog-content")
+    private WebElement scroll;
+
     public AddObjectsPage(WebDriver driver) {
         this.driver = driver;
         // Явное ожидание с таймаутом 10 секунд

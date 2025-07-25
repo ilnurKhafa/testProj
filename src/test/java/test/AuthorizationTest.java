@@ -23,18 +23,18 @@ public class AuthorizationTest extends TestBase {
     @DisplayName("Пустые поля, пустой логин и положительная авторизация")
     public void authBalanceHolderPositiveTest() {
         driver.get("http://localhost:8080/bh/");
-        assertTrue(loginBhPage.getTitle().getText().equals("БАРС-Балансодержатель"));
+        assertEquals("БАРС-Балансодержатель", loginBhPage.getTitle().getText());
         loginBhPage.isPageLoaded();
 
         loginBhPage.getAuthButton().click();
-        assertTrue(loginBhPage.getFailMassagePassword().getText().equals("Введите пароль"));
-        assertTrue(loginBhPage.getFailMassageLogin().getText().equals("Введите имя пользователя"));
+        assertEquals("Введите пароль", loginBhPage.getFailMassagePassword().getText());
+        assertEquals("Введите имя пользователя", loginBhPage.getFailMassageLogin().getText());
 
         loginBhPage.getPassword().click();
         loginBhPage.getPassword().sendKeys("111");
 
         loginBhPage.getAuthButton().click();
-        assertTrue(loginBhPage.getFailMassageLogin().getText().equals("Введите имя пользователя"));
+        assertEquals("Введите имя пользователя", loginBhPage.getFailMassageLogin().getText());
 
         loginBhPage.getLoginInput().click();
         loginBhPage.getLoginInput().sendKeys("admin");
@@ -44,43 +44,27 @@ public class AuthorizationTest extends TestBase {
 
         assertAll(
                 () -> assertTrue(holderPage.isPageLoaded(), "Страница не загрузилась"),
-                () -> assertEquals("Правообладатель", holderPage.getBalanceHolder().getText(),"Текст заголовка не совпал с ожидаемым"));
+                () -> assertEquals("Правообладатель", holderPage.getBalanceHolder().getText(), "Текст заголовка не совпал с ожидаемым"));
     }
 
     @Test
     @DisplayName("Авторизация: пустое поле пароля и несуществующий пользователь")
     public void authBalanceHolderNegativePasswordAndLogin() {
         driver.get("http://localhost:8080/bh/");
-        assertTrue(loginBhPage.getTitle().getText().equals("БАРС-Балансодержатель"));
+        assertEquals("БАРС-Балансодержатель", loginBhPage.getTitle().getText());
         loginBhPage.isPageLoaded();
 
         loginBhPage.getLoginInput().click();
         loginBhPage.getLoginInput().sendKeys("123");
 
         loginBhPage.getAuthButton().click();
-        assertTrue(loginBhPage.getFailMassagePassword().getText().equals("Введите пароль"));
+        assertEquals("Введите пароль", loginBhPage.getFailMassagePassword().getText());
 
         loginBhPage.getPassword().click();
         loginBhPage.getPassword().sendKeys("111");
 
         loginBhPage.getAuthButton().click();
-        assertTrue(loginBhPage.getFailMassagePerson().getText().equals("Пользователь не найден."));
+        assertEquals("Пользователь не найден.", loginBhPage.getFailMassagePerson().getText());
     }
 
-    @Test
-    @DisplayName("Авторизация")
-    public void authBalanceHolder() {
-        driver.get("http://localhost:8080/bh/");
-        assertTrue(loginBhPage.getTitle().getText().equals("БАРС-Балансодержатель"));
-        loginBhPage.isPageLoaded();
-
-        loginBhPage.getPassword().click();
-        loginBhPage.getPassword().sendKeys("111");
-        loginBhPage.getLoginInput().click();
-        loginBhPage.getLoginInput().sendKeys("admin");
-
-        loginBhPage.getAuthButton().click();
-        holderPage.isPageLoaded();
-        assertTrue(loginBhPage.getBalanceHolder().getText().equals("Правообладатель"));
-    }
 }

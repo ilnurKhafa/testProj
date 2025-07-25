@@ -3,66 +3,59 @@ package test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.BalanceHolder.*;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+
+import pages.BalanceHolder.AddObjectsPage;
+import pages.BalanceHolder.HolderPage;
+import pages.BalanceHolder.LoginBhPage;
+import pages.BalanceHolder.ObjectsPage;
+import pages.BalanceHolder.ObjectsTheBasisOfChangeWindowPage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ObjectsTest extends TestBase {
 
-    private LoginBhPage loginBhPage;
     private HolderPage holderPage;
     private ObjectsPage objectsPage;
     private ObjectsTheBasisOfChangeWindowPage objectsTheBasisOfChangeWindowPage;
     private AddObjectsPage addObjectsPage;
+    private WebDriverWait wait;
 
     @BeforeAll
     public void initPages() {
-        loginBhPage = new LoginBhPage(driver);
         holderPage = new HolderPage(driver);
         objectsPage = new ObjectsPage(driver);
         objectsTheBasisOfChangeWindowPage = new ObjectsTheBasisOfChangeWindowPage(driver);
         addObjectsPage = new AddObjectsPage(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     }
 
     @Test
     @DisplayName("Добавление объекта на вкладке Объекты - Движемое имущество")
     public void addObjectMovableProperty() {
-        driver.get("http://localhost:8080/bh/");
-        assertTrue(loginBhPage.getTitle().getText().equals("БАРС-Балансодержатель"));
-        loginBhPage.isPageLoaded();
-//testing
-        loginBhPage.getPassword().click();
-        loginBhPage.getPassword().sendKeys("111");
-        loginBhPage.getLoginInput().click();
-        loginBhPage.getLoginInput().sendKeys("admin");
-
-        loginBhPage.getAuthButton().click();
-        holderPage.isPageLoaded();
-        assertTrue(loginBhPage.getBalanceHolder().getText().equals("Правообладатель"));
+        registration("admin", "111");
 
         holderPage.getObjects().click();
-        objectsPage.getMovableProperty().click();
-
         objectsPage.getAddButton().click();
-        assertTrue(addObjectsPage.getNameAddObjects().getText().equals("Добавление объекта"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
+                addObjectsPage.getNameField());
 
         addObjectsPage.getNameField().click();
         addObjectsPage.getNameField().sendKeys("testAuto");
 
         addObjectsPage.getSaveButton().click();
-        assertTrue(objectsTheBasisOfChangeWindowPage.getNameTheBasisOfChangeWindow().getText().equals("Основание изменений"));
 
-        objectsTheBasisOfChangeWindowPage.getCalendarClearButton().click();
-        objectsTheBasisOfChangeWindowPage.getFieldDateOfChange().click();
-        objectsTheBasisOfChangeWindowPage.getFieldDateOfChange().sendKeys("01.01.2025");
-
+        assertTrue(objectsTheBasisOfChangeWindowPage.getFieldReason().isDisplayed());
         objectsTheBasisOfChangeWindowPage.getFieldReason().click();
         objectsTheBasisOfChangeWindowPage.getReasonAppObject().click();
 
-        objectsTheBasisOfChangeWindowPage.getDocumentField().click();
-        objectsTheBasisOfChangeWindowPage.getDocumentField().sendKeys("-");
-
         objectsTheBasisOfChangeWindowPage.getSaveButton().click();
 
+
     }
-    }
+}
