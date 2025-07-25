@@ -34,19 +34,19 @@ public class ObjectsTheBasisOfChangeWindowPage extends BasePage {
     private WebElement calendarButton;
 
     @ElementDescription("Календарь - кнопка очистить")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-8\"]/app-enter-history/div/div[2]/div[1]/div[2]/div[2]/div[2]/div/div/button[1]")
+    @FindBy(xpath = "/html/body/div[3]/div[4]/div/mat-dialog-container/app-enter-history/div/div[2]/div[1]/div[2]/div[2]/div[2]/div/div/button[1]")
     private WebElement calendarClearButton;
 
     @ElementDescription("Поле Причина")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-6\"]/app-enter-history/div/div[2]/div[1]/div[2]/div[3]/div[2]/select")
+    @FindBy(xpath = "//select[contains(@class, 'form-control')]")
     private WebElement fieldReason;
 
     @ElementDescription("Причина - изменение по объекту")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-6\"]/app-enter-history/div/div[2]/div[1]/div[2]/div[3]/div[2]/select/option[1]")
+    @FindBy(xpath = "//*[contains(text(), 'Изменения по объекту')]")
     private WebElement reasonChangeObject;
 
     @ElementDescription("Причина - добавление объекта")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-8\"]/app-enter-history/div/div[2]/div[1]/div[2]/div[3]/div[2]/select/option[5]")
+    @FindBy(xpath = "//*[contains(text(), 'Добавление объекта')]")
     private WebElement reasonAppObject;
 
     @ElementDescription("Документ - поле для того, чтобы написать документ")
@@ -58,7 +58,7 @@ public class ObjectsTheBasisOfChangeWindowPage extends BasePage {
     private WebElement documentFieldClear;
 
     @ElementDescription("Сохранить")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-11\"]/app-enter-history/div/div[2]/div[2]/button[2]")
+    @FindBy(xpath = "/html/body/div[3]/div[4]/div/mat-dialog-container/app-enter-history/div/div[2]/div[2]/button[2]")
     private WebElement saveButton;
 
     @ElementDescription("Отмена")

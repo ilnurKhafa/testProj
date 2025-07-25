@@ -25,6 +25,10 @@ public class HolderPage extends BasePage {
     @FindBy(xpath = "/html/body/div[1]/app-root/app-view-balanceholder/div/div/button[1]")
     private WebElement editButton;
 
+    @ElementDescription("Элемент для сравнения - Наименование")
+    @FindBy(xpath = "//*[@id=\"RCONTRAGENT_NAME\"]")
+    private WebElement rContragentName;
+
     @ElementDescription("Кнопка история")
     @FindBy(xpath = "/html/body/div[1]/app-root/app-view-balanceholder/div/div/a/button")
     private WebElement historyButton;
@@ -57,6 +61,34 @@ public class HolderPage extends BasePage {
     @ElementDescription("Выход")
     @FindBy(xpath = "/html/body/div[1]/app-root/nav/button[2]")
     private WebElement buttonExit;
+
+    //окно_редактирования_балансодержателя
+
+    @ElementDescription("Наименование окно Редактирования контрагента")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-title-3\"]/h3")
+    private WebElement nameAddHolder;
+
+    @ElementDescription("Поле Наименование")
+    @FindBy(xpath = "//*[@id=\"RCONTRAGENT_EDIT_NAME\"]")
+    private WebElement fieldName;
+
+    @ElementDescription("Кнопка Сохранить")
+    @FindBy(xpath = "//*[contains(text(), 'Сохранить')]")
+    private WebElement saveButton;
+
+    @ElementDescription("Кнопка Закрыть")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-0\"]/app-add-edit-reestr-element/mat-dialog-actions/button[2]")
+    private WebElement closeButton;
+
+    //окно_внесение_изменений_окончено
+
+    @ElementDescription("Наименование внесение изменений окнончено")
+    @FindBy(xpath = "/html/body/div[4]/div[2]/div/mat-dialog-container/app-alert-window/div/mat-dialog-content/div/div[2]/span")
+    private WebElement nameMakingChange;
+
+    @ElementDescription("Наименование внесение изменений окнончено - кнопка Закрыть")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-5\"]/app-alert-window/div/div/button")
+    private WebElement nameMakingChangeCloseButton;
 
     public HolderPage(WebDriver driver) {
         this.driver = driver;
