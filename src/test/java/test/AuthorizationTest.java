@@ -3,8 +3,13 @@ package test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BalanceHolder.HolderPage;
 import pages.BalanceHolder.LoginBhPage;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,13 +36,13 @@ public class AuthorizationTest extends TestBase {
         assertEquals("Введите имя пользователя", loginBhPage.getFailMassageLogin().getText());
 
         loginBhPage.getPassword().click();
-        loginBhPage.getPassword().sendKeys("111");
+        loginBhPage.getPassword().sendKeys("1mQYVeeeeQ");
 
         loginBhPage.getAuthButton().click();
         assertEquals("Введите имя пользователя", loginBhPage.getFailMassageLogin().getText());
 
         loginBhPage.getLoginInput().click();
-        loginBhPage.getLoginInput().sendKeys("admin");
+        loginBhPage.getLoginInput().sendKeys("antropova");
 
         loginBhPage.getAuthButton().click();
         holderPage.isPageLoaded();
@@ -55,7 +60,7 @@ public class AuthorizationTest extends TestBase {
         loginBhPage.isPageLoaded();
 
         loginBhPage.getLoginInput().click();
-        loginBhPage.getLoginInput().sendKeys("123");
+        loginBhPage.getLoginInput().sendKeys("1256");
 
         loginBhPage.getAuthButton().click();
         assertEquals("Введите пароль", loginBhPage.getFailMassagePassword().getText());
@@ -64,6 +69,12 @@ public class AuthorizationTest extends TestBase {
         loginBhPage.getPassword().sendKeys("111");
 
         loginBhPage.getAuthButton().click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement failMsgElement = loginBhPage.getFailMassagePerson();
+        String expectedText = "Пользователь не найден.";
+        wait.until(ExpectedConditions.textToBePresentInElement(failMsgElement, expectedText));
+
         assertEquals("Пользователь не найден.", loginBhPage.getFailMassagePerson().getText());
     }
 

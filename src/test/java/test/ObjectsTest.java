@@ -36,7 +36,7 @@ public class ObjectsTest extends TestBase {
     @Test
     @DisplayName("Добавление объекта на вкладке Объекты - Движемое имущество")
     public void addObjectMovableProperty() {
-        registration("admin", "111");
+        registration("antropova", "1mQYVeeeeQ");
 
         holderPage.getObjects().click();
         objectsPage.getAddButton().click();

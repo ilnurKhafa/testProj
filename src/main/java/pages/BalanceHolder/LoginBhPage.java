@@ -51,6 +51,8 @@ public class LoginBhPage extends BasePage {
     @ElementDescription("Введите пароль")
     private WebElement failMassagePassword;
 
+
+
     @FindBy(xpath = "/html/body/div[1]/app-root/app-login/div/div[2]")
     @ElementDescription("Пользователь не найден")
     private WebElement failMassagePerson;

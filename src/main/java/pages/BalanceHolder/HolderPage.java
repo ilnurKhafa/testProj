@@ -64,8 +64,8 @@ public class HolderPage extends BasePage {
 
     //окно_редактирования_балансодержателя
 
-    @ElementDescription("Наименование окно Редактирования контрагента")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-title-3\"]/h3")
+    @ElementDescription("Наименование окно Редактирование контрагента")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-title-4\"]/h3")
     private WebElement nameAddHolder;
 
     @ElementDescription("Поле Наименование")
@@ -87,7 +87,7 @@ public class HolderPage extends BasePage {
     private WebElement nameMakingChange;
 
     @ElementDescription("Наименование внесение изменений окнончено - кнопка Закрыть")
-    @FindBy(xpath = "//*[@id=\"mat-dialog-5\"]/app-alert-window/div/div/button")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-4\"]/app-alert-window/div/div/button")
     private WebElement nameMakingChangeCloseButton;
 
     public HolderPage(WebDriver driver) {
